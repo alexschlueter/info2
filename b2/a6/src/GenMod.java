@@ -6,7 +6,7 @@ public class GenMod implements ZufallszahlenGenerator {
     private int a, c, m, r;
 
     /**
-     * Initialisiere die Parameter für die lineare Kongruenzmethode
+     * Initialisiere die Parameter fuer die lineare Kongruenzmethode
      * @param a Multiplikator
      * @param c Inkrement
      * @param m Modulus
@@ -20,13 +20,13 @@ public class GenMod implements ZufallszahlenGenerator {
     }
 
     /**
-     * Generiere nächsten Wert
+     * Generiere naechsten Wert
      * @return Integerwert in {1, ..., m}
      */
     public int nextInt() {
         r = (a * r + c) % m;
         // r liegt in {0, ..., m - 1}
-        // aber wir wollen einen Wert in {1, ..., m} (für die Visualisierung sollen alle Werte in {1, ... , 100} liegen)
+        // aber wir wollen einen Wert in {1, ..., m} (fuer die Visualisierung sollen alle Werte in {1, ... , 100} liegen)
         return r + 1;
     }
 }

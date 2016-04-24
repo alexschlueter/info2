@@ -30,7 +30,7 @@ public class ZufallszahlenVisualisierung extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        // caste zu Graphics2D um mit double - Genauigkeit zeichnen zu können
+        // caste zu Graphics2D um mit double - Genauigkeit zeichnen zu koennen
         final Graphics2D g2 = (Graphics2D) g;
 
         final int width = getWidth();
@@ -43,29 +43,29 @@ public class ZufallszahlenVisualisierung extends JPanel {
         final String xlab = "Durchgang";
         final String ylab = "Zufallszahl";
 
-        // Frage Ausmaße der Beschriftungen ab
+        // Frage Ausmasse der Beschriftungen ab
         final int xlabWidth = g.getFontMetrics().stringWidth(xlab);
         final double ylabHeight = g.getFontMetrics().getStringBounds(ylab, g).getHeight();
 
-        // Berechne Ausmaße des Bereichs, in dem tatsächlich Punkte gezeichnet werden
+        // Berechne Ausmasse des Bereichs, in dem tatsaechlich Punkte gezeichnet werden
         // 3.0 * margin setzt sich zusammen aus:
         // Abstand der Achse zum Fensterrand + Abstand Text zur Achse + Abstand Text zu Fensterrand
         final double plotWidth = width - 3.0  * margin - xlabWidth;
         final double plotHeight = height - 3.0 * margin - ylabHeight;
 
         // Markierungen sollen quadratisch sein.
-        // Teste zuerst, ob Breite oder Höhe des Fensters die Quadratgröße limitiert
+        // Teste zuerst, ob Breite oder Hoehe des Fensters die Quadratgroesse limitiert
         final double testWidth = plotWidth / a.length;
         final double testHeight = plotHeight / 100.0;
-        // Quadratgröße ist minwh
+        // Quadratgroesse ist minwh
         final double minwh = Math.min(testWidth, testHeight);
 
-        // In der Dimension, die die Quadratgröße limitiert, werden Quadrate dicht (ohne Lücke) gepackt
-        // In der anderen Dimension wird der restliche Platz auf die Lücken aufgeteilt
+        // In der Dimension, die die Quadratgroesse limitiert, werden Quadrate dicht (ohne Luecke) gepackt
+        // In der anderen Dimension wird der restliche Platz auf die Luecken aufgeteilt
         final double gapHeight = (plotHeight - 100.0 * minwh) / 100.0;
         final double gapWidth = (plotWidth - a.length * minwh) / a.length;
 
-        // Zeichne Achsen mit Abstand margin zum Fensterrand, lasse Platz für Text
+        // Zeichne Achsen mit Abstand margin zum Fensterrand, lasse Platz fuer Text
         g2.draw(new Line2D.Double(margin, height - margin, width - xlabWidth - 2 * margin, height - margin));
         g2.draw(new Line2D.Double(margin, height - margin, margin, 2 * margin + ylabHeight));
 
@@ -73,7 +73,7 @@ public class ZufallszahlenVisualisierung extends JPanel {
         g2.drawString(ylab, margin, margin + (int) ylabHeight);
         g2.drawString(xlab, width - xlabWidth - margin, height - margin);
 
-        // Zeichne Quadrate mit Größe minwh und den zuvor berechneten Lücken
+        // Zeichne Quadrate mit Groesse minwh und den zuvor berechneten Luecken
         // In der i-ten Spalte ist der j-te Eintrag genau dann markiert, wenn a[i] = j ist
         for (int i = 0; i < a.length; ++i) {
             g2.fill(new Rectangle2D.Double(margin + i * (minwh + gapWidth) + gapWidth,
@@ -84,7 +84,7 @@ public class ZufallszahlenVisualisierung extends JPanel {
 
     /**
      * Main-Methode, die ein Fenster erzeugt und diesem ein Objekt der Klasse ZufallszahlenVisualisierung hinzufuegt.
-     * Außerdem werden die Zufallsgeneratoren für Aufgabenteil b) und c) initialisiert.
+     * Ausserdem werden die Zufallsgeneratoren fuer Aufgabenteil b) und c) initialisiert.
      */
     public static void main(String[] args) {
         // Aufgabe b)
@@ -108,7 +108,7 @@ public class ZufallszahlenVisualisierung extends JPanel {
 
         JFrame frame = new JFrame("Visualisierung von Zufallszahlengeneratoren");
 
-        // Hier wird der Zufallsgenerator übergeben, der tatsächlich genutzt werden soll
+        // Hier wird der Zufallsgenerator uebergeben, der tatsaechlich genutzt werden soll
         frame.getContentPane().add(new ZufallszahlenVisualisierung(genjava, 200), BorderLayout.CENTER);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
