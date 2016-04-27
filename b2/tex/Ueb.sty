@@ -29,10 +29,17 @@
 \usepackage{mathtools}
 \usepackage{thmtools}
 \usepackage[capitalize]{cleveref}
-\newlist{exlist}{enumerate}{1}
-\setlist[exlist]{label=(\alph{exlisti}),ref=\theex (\roman{exlisti})}
+\newlist{exlist}{enumerate}{4}
+\setlist[exlist,1]{label=(\alph{exlisti}),ref=\theex (\roman{exlisti})}
+\setlist[exlist,2]{label=(\roman*),ref=\theex (\roman{exlisti})}
 
-\newtheoremstyle{break}{}{}{}{}{\bfseries}{}{\newline}{}
+% \newtheoremstyle{break}{}{}{}{}{\bfseries}{}{\newline}{}
+\declaretheoremstyle[
+headfont=\bfseries,
+headpunct=,
+spacebelow=30pt,
+% postheadhook=\newline,
+]{break}
 \declaretheoremstyle[headpunct=.:]{claim}
 
 \newcounter{excnt}
@@ -62,10 +69,20 @@ sibling=excnt]{ex}
 \renewcommand{\footrulewidth}{0.4pt} 	%untere Trennlinie
 
 % Ein paar hilfreiche Zeichen
-\newcommand{\R}{\mathbb{R}}                 % reelle Zahlen
-\newcommand{\N}{\mathbb{N}}                 % natuerliche Zahlen
-\newcommand{\e}{\text{e}}                   % eulersche Zahl
-\newcommand{\E}[1]{\cdot10^{#1}}            % x 10^{...}
+\newcommand{\stcomp}[1]{{#1}^{\mathsf{c}}} % Mengenkomplement
+\newcommand{\diri}{\mathcal{E}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\KK}{\mathbb{K}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\OO}{\mathbb{O}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\DeclarePairedDelimiter{\sprod}{\langle}{\rangle}	% spitze Klammern
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}		% Betrag
+\DeclareMathOperator{\ggT}{ggT}
 \newcommand{\ON}[1]{{\cal O}(#1)}	    %O-Notation
 \newcommand{\Aufgabe}[1]{{\vskip5mm\bf Aufgabe #1.\\}}
 

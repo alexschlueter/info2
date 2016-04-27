@@ -33,14 +33,55 @@
 \setcounter{excnt}{5}
 \begin{ex}
 \begin{exlist}
-  \setcounter{exlisti}{2}
   \leavevmode
+  \setcounter{exlisti}{2}
   \item
 Aufgrund klar erkennbarer Muster sind die Zufallsgeneratoren für
 \begin{equation*}
 a\in\Set{6,16,22,33,35,36,47,50,61,62,64,75,81,91,96}
 \end{equation*}
  auszuschließen.
+\end{exlist}
+\end{ex}
+\begin{ex}
+\begin{exlist}
+  \setcounter{exlisti}{2}
+  \leavevmode
+  \item 
+    \begin{exlist}
+\item Nach dem Chinesischen Restsatz können alle ganze Zahlen in 
+\begin{equation*}
+\ZZ\cap [0,
+  m_1\cdot m_2\cdot m_3)=\ZZ\cap[0, 999999000)
+  \end{equation*}
+  eindeutig durch ihre Reste bezüglich $m_1$, $m_2$ und $m_3$ dargestellt
+  werden, denn die Moduli sind teilerfremd:
+\begin{align*}
+999 &= 3^3\cdot 37 \\
+1000 &= 2^3\cdot 5^3 \\
+1001 &= 7 \cdot 11\cdot 13 
+\end{align*}
+\item Formal werden die Reste bezüglich der Moduli ausgerechnet:
+\begin{align*}
+  r_1&=r\bmod 999 \\
+r_2&=r\bmod1000 \\
+r_3 &= r\bmod1001
+  \end{align*}
+  Man kann auch nach folgendem Schema rechnen:
+  \begin{table}[h!]
+    \centering
+\begin{tabular}{l l}
+  $r\bmod 999$: & Addiere Tripel von Ziffern und nehme die sich ergebende Summe $\mod 999$ \\
+$r\bmod 1000$ & Nehme die drei am weitesten rechts stehenden Ziffern \\
+$r\bmod 1001$ & Alternierend addiere und subtrahiere Tripel von Ziffern und \\ &nehme das Resultat $\mod 1001$
+  \end{tabular}
+  \end{table}
+  \item Es gilt
+    \begin{equation*}
+x_{44} = 701408733<999999000=m_1m_2m_3<1134903170=x_{45}
+\end{equation*}
+also ist die 44. Fibonacci-Zahl die größte, die dargestellt werden kann.
+\end{exlist}
 \end{exlist}
 \end{ex}
 \end{document}
