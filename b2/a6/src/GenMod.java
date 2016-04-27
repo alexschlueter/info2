@@ -3,7 +3,7 @@
  * Generiert Integerwerte in {1, ..., m} wobei m der Modulus ist
  */
 public class GenMod implements ZufallszahlenGenerator {
-    private int a, c, m, r;
+    private int a, c, m, r0, r;
 
     /**
      * Initialisiere die Parameter fuer die lineare Kongruenzmethode
@@ -12,11 +12,15 @@ public class GenMod implements ZufallszahlenGenerator {
      * @param m Modulus
      * @param r0 Startwert
      */
-    public GenMod(int aa, int cc, int mm, int r0) {
-        a = aa;
-        c = cc;
-        m = mm;
-        r = r0;
+    public GenMod(int a, int c, int m, int r0) {
+        this.a = a;
+        this.c = c;
+        this.m = m;
+        this.r = this.r0 = r0;
+    }
+
+    public String name() {
+        return "Generator nach der linearen Kongruenzmethode (a=" + a + ", c=" + c + ", m=" + m + ", r0=" + r0 + ")";
     }
 
     /**
