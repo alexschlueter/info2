@@ -4,13 +4,15 @@ public class Main {
     public static final int[] decode(int internalFormat) {
         int res[] = {0, 0, 0};
         for (int i = 0; i < 9; ++i) {
-            res[0] |= (internalFormat & (1 << (3 * i + 3))) >> (2 * i + 3);
-            res[1] |= (internalFormat & (1 << (3 * i + 4))) >> (2 * i + 4);
-            res[2] |= (internalFormat & (1 << (3 * i + 5))) >> (2 * i + 5);
+            res[0] |= (internalFormat & (1 << (3 * i + 3))) >>> (2 * i + 3);
+            res[1] |= (internalFormat & (1 << (3 * i + 4))) >>> (2 * i + 4);
+            res[2] |= (internalFormat & (1 << (3 * i + 5))) >>> (2 * i + 5);
         }
+        res[0] |= (internalFormat & (1 << (3 * 9 + 3))) >>> (2 * 9 + 3);
+        res[1] |= (internalFormat & (1 << (3 * 9 + 4))) >>> (2 * 9 + 4);
         for (int i = 0; i < 3; ++i) {
             if ((internalFormat & (1 << i)) != 0) {
-                res[i] *= -1;
+                res[i] = -1 * res[i] - 1;
             }
         }
         return res;
@@ -21,7 +23,7 @@ public class Main {
         for (int i = 0; i < 3; ++i) {
             if (threeIntegersArray[i] < 0) {
                 res |= 1 << i;
-                threeIntegersArray[i] *= -1;
+                threeIntegersArray[i] = -1 * threeIntegersArray[i] - 1;
             }
         }
         for (int i = 0; i < 9; ++i) {
@@ -29,6 +31,8 @@ public class Main {
             res |= (threeIntegersArray[1] & (1 << i)) << (2 * i + 4);
             res |= (threeIntegersArray[2] & (1 << i)) << (2 * i + 5);
         }
+        res |= (threeIntegersArray[0] & (1 << 9)) << (2 * 9 + 3);
+        res |= (threeIntegersArray[1] & (1 << 9)) << (2 * 9 + 4);
         return res;
     }
 
