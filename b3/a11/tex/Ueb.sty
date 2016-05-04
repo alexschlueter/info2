@@ -1,0 +1,101 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Ueb.sty                                                       %
+%                                                                     %
+%	Author: Sergej Lewin 10/2008                                  %
+%                                                                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[ngerman]{babel}         % Neue deutsche Rechtschreibung
+\usepackage[T1]{fontenc}            % Bessere Schriftdarstellung
+\usepackage{lmodern}                % Aktuelle Schrift
+
+\usepackage{graphicx}               % notwendig fuer \includegraphics
+\usepackage{fancyhdr}               % Kopf- und Fusszeile
+\usepackage{lastpage}               % erzeugt Referez zu der letzten Seite
+\usepackage{moreverb}               % verbatimtab Umgeung
+
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage{csquotes}
+\usepackage{bbm}
+\usepackage{braket}
+\usepackage{enumitem}
+\usepackage[shortcuts]{extdash}
+\usepackage{cancel}
+% \usepackage[backend=biber,style=alphabetic]{biblatex}
+\usepackage{nameref}
+\usepackage{hyperref}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{mathtools}
+\usepackage{thmtools}
+\usepackage[capitalize]{cleveref}
+\newlist{exlist}{enumerate}{4}
+\setlist[exlist,1]{label=(\alph{exlisti}),ref=\theex (\roman{exlisti})}
+\setlist[exlist,2]{label=(\roman*),ref=\theex (\roman{exlisti})}
+
+% \newtheoremstyle{break}{}{}{}{}{\bfseries}{}{\newline}{}
+\declaretheoremstyle[
+headfont=\bfseries,
+headpunct=,
+spacebelow=30pt,
+% postheadhook=\newline,
+]{break}
+\declaretheoremstyle[headpunct=.:]{claim}
+
+\newcounter{excnt}
+
+\declaretheorem[
+name=Aufgabe,
+%refname={theorem,theorems},        %Lower Case Versions of Theorem Type
+% Refname={Satz,Sätze},
+style=break,
+sibling=excnt]{ex}
+
+\addtotheorempostheadhook[ex]{\crefalias{exlisti}{ex}}
+
+% Seiteneinstelungen
+\setlength\textwidth{165mm}           % Breite
+\setlength\textheight{235mm}          % Hoehe
+\setlength\headheight{41pt}           % Hoehe der Kopfzeile
+\setlength\topmargin{-12mm}           % Abstand oben
+\setlength\oddsidemargin{0mm}         % Linker Rand
+\setlength\parindent{0pt}             % und ohne Einrueckung
+\setlength\parskip{1.7\medskipamount} % Absaetze abgesetzt
+\sloppy\pagestyle{fancy}
+
+%Kopf- und Fusszeileeinstellungen
+\renewcommand{\headrulewidth}{0.4pt} 	%obere Trennlinie
+\fancyfoot[C]{Seite:~\thepage~von~\pageref{LastPage}} %Seitennummer
+\renewcommand{\footrulewidth}{0.4pt} 	%untere Trennlinie
+
+% Ein paar hilfreiche Zeichen
+\newcommand{\stcomp}[1]{{#1}^{\mathsf{c}}} % Mengenkomplement
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\KK}{\mathbb{K}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\OO}{\mathbb{O}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\DeclarePairedDelimiter{\sprod}{\langle}{\rangle}	% spitze Klammern
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}		% Betrag
+\DeclareMathOperator{\ggT}{ggT}
+\newcommand{\ON}[1]{{\cal O}(#1)}	    %O-Notation
+\newcommand{\Aufgabe}[1]{{\vskip5mm\bf Aufgabe #1.\\}}
+
+\def\vblatt{~}
+\def\vterm{~}
+\def\vbriefkasten{~}
+%Blattnummer, Abgabedatum und Namen mir Matrikelnummern in der Kopfzeile anpassen
+\newcommand{\dreinamenmatr}[6]{\fancyhead[R]{#1 (#2)\\#3 (#4)\\#5 (#6)}} %Kopfzeile rechts
+\newcommand{\dreinamen}[3]{\fancyhead[R]{#1\\#2\\#3}} %Kopfzeile rechts
+\newcommand{\zweinamenmatr}[4]{\fancyhead[R]{#1 (#2)\\#3 (#4)}}
+\newcommand{\zweinamen}[2]{\fancyhead[R]{#1\\#2}}
+\fancyhead[C]{\large{\bf{Blatt \vblatt }}}
+\fancyhead[L]{Informatik II (SS2016) \\ \"Ubungsgruppe: \vtermin} %\\Briefkasten: \vbriefkasten}
+
+\newcommand{\blatt}[1]{\def\vblatt{#1}}
+\newcommand{\termin}[1]{\def\vtermin{#1}}
+\newcommand{\briefkasten}[1]{\def\vbriefkasten{#1}}
