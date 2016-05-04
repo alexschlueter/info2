@@ -46,8 +46,11 @@ $l, n, m\in\NN$ die Ziffernlängen und ganz rechts stehen die am wenigsten
 signifikanten Ziffern.
 Da es $2^3=8$ mögliche Kombinationen von Vorzeichen gibt, können die
 Vorzeichen in der ersten Dezimalziffer $d_0\in\set{0, 1,\cdots, 7}$ gespeichert
-werden. Baue nun einen Integer-Wert $x$ zusammen, der als erste Ziffer $d_0$
-hat und danach abwechselnd Ziffern von $i, j$ und $k$, also
+werden. Zum Beispiel kann der Bitstring aus den Vorzeichenbits $s_2s_1s_0$ als
+Binärzahl interpretiert werden und die entsprechende Dezimalzahl gespeichert werden.
+
+Baue nun einen Integer-Wert $x$ zusammen, dessen erste (rechte) Ziffer $d_0$
+ist und der danach abwechselnd Ziffern von $i, j$ und $k$ enthält, also
 \begin{equation*}
  x = \dots p_2r_1q_1p_1r_{0}q_{0}p_{0}d_0 
 \end{equation*}
@@ -58,28 +61,6 @@ muss der kürzere mit Nullen aufgefüllt werden. Zum Beispiel werden $i=12,
  x = 8507426310 \qquad ,
 \end{equation*}
 wobei die ganz rechte Null sich aus den Vorzeichen ergibt.
-\item 
-  Für die Implementation in Java bietet es sich an, das oben angegebene
-  Verfahren mit der Binärdarstellung statt der Dezimaldarstellung der Integers
-  durchzuführen. Seien $s_0, s_1, s_2$ die Vorzeichenbits von $i_0, i_1, i_2$,
-  so baue den Integer $x$ so zusammen:
-  \begin{equation*}
- x = \dots p_2r_1q_1p_1r_{0}q_{0}p_{0}s_2s_1s_0
-  \end{equation*}
-  Diesmal stehen die Buchstaben $p, q, r$ für die Bitfolgen der Ausgangswerte.
-
-Da das Ergebnis $x$ wieder in einem Integer mit 32 Bits gespeichert werden soll
-und 3 Bits für die Vorzeichen gebraucht werden, bleiben 29 Bits übrig.
-Das bedeutet bei gleichberechtigter Auteilung, dass von $i_0$ und $i_1$ je 10
-Bits gespeichert werden können, von $i_2$ nur 9.
-Da in Java negative Integers nach dem Zweierkomplement kodiert werden, verbrauchen
-betraglich kleine negative Integers viele Bitstellen, z.B. wird $-1$
-repräsentiert als einen Bitstring mit 32 Einsen. Bei der Speicherung von $x$ in
-einem Integer werden die Bitfolgen auf Länge 9 bzw. 10 gekürzt. Um betraglich
-kleine Werte korrekt zu dekodieren, müssen folglich negative Werte links mit
-Einsen aufgefüllt werden, positive mit Nullen. Der Code ist an der
-entsprechenden Stelle kommentiert.
-\item + (d) Nichts fällt auf, beide Tests sind erfolgreich :-) 
 \end{exlist}
 \end{ex}
 \end{document}

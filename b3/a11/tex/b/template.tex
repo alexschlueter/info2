@@ -1,0 +1,62 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             template.tex                                                              %
+%                                                                                       %
+%            Author: Sergej Lewin 10/2008                                               %
+%                                                                                       %    
+% !!!Man braucht noch die Datei Ueb.sty (im gleichen Ordner wie die Hauptdatei)!!!      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper,11pt]{article}             % bestimmt das Aussehen eines Dokuments
+\usepackage{Ueb}                                  % vordefinierte Makros
+
+%!!!!anpassen an das Betriebssystem!!!, um Umlaute zu verwenden
+\usepackage[utf8]{inputenc}                      %Linux
+%\usepackage[latin1]{inputenc}                    %Windows
+%\usepackage[applemac]{inputenc}                  %Mac
+
+
+
+%Namen und Matrikelnummern anpassen
+\zweinamen{Aristide Voufouo}{Alexander Schlüter} %2er Gruppen
+% \dreinamen{Tanja Wilke}{Jan Rathner}{Alexander Schlüter} %3er Gruppe
+
+%Briefkastennummer anpassen. z. B. \briefkasten{104}
+% \briefkasten{83}
+
+%Termin der Uebungsgruppe und Raum anpassen z. B. \termin{Mo. 12-14 , SR2}
+\termin{Fr. 10-12, SRZ205}
+
+%Blattnummer anpassen z. B. \blatt{5}
+\blatt{3}
+
+\begin{document}
+%Hier kommt der Text des Dokuments......
+\setcounter{excnt}{10}
+\begin{ex}
+\begin{exlist}
+  \leavevmode
+  \setcounter{exlisti}{1}
+\item 
+  Für die Implementation in Java bietet es sich an, das oben angegebene
+  Verfahren mit der Binärdarstellung statt der Dezimaldarstellung der Integers
+  durchzuführen. Seien $s_0, s_1, s_2$ die Vorzeichenbits von $i_0, i_1, i_2$,
+  so baue den Integer $x$ so zusammen:
+  \begin{equation*}
+ x = \dots p_2r_1q_1p_1r_{0}q_{0}p_{0}s_2s_1s_0
+  \end{equation*}
+  Diesmal stehen die Buchstaben $p, q, r$ für die Bitfolgen der Ausgangswerte.
+
+Da das Ergebnis $x$ wieder in einem Integer mit 32 Bits gespeichert werden soll
+und 3 Bits für die Vorzeichen gebraucht werden, bleiben 29 Bits übrig.
+Das bedeutet bei gleichberechtigter Auteilung, dass von $i_0$ und $i_1$ je 10
+Bits gespeichert werden können, von $i_2$ nur 9.
+Da in Java negative Integers nach dem Zweierkomplement kodiert werden, verbrauchen
+betraglich kleine negative Integers viele Bitstellen, z.B. wird $-1$
+repräsentiert als einen Bitstring mit 32 Einsen. Bei der Speicherung von $x$ in
+einem Integer werden die Bitfolgen auf Länge 9 bzw. 10 gekürzt. Um betraglich
+kleine Werte korrekt zu dekodieren, müssen folglich negative Werte links mit
+Einsen aufgefüllt werden, positive mit Nullen. Der Code ist an der
+entsprechenden Stelle kommentiert.
+\item + (d) Nichts fällt auf, beide Tests sind erfolgreich :-) 
+\end{exlist}
+\end{ex}
+\end{document}
