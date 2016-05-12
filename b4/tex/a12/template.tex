@@ -1,0 +1,205 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             template.tex                                                              %
+%                                                                                       %
+%            Author: Sergej Lewin 10/2008                                               %
+%                                                                                       %    
+% !!!Man braucht noch die Datei Ueb.sty (im gleichen Ordner wie die Hauptdatei)!!!      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper,11pt]{article}             % bestimmt das Aussehen eines Dokuments
+\usepackage{Ueb}                                  % vordefinierte Makros
+
+%!!!!anpassen an das Betriebssystem!!!, um Umlaute zu verwenden
+\usepackage[utf8]{inputenc}                      %Linux
+%\usepackage[latin1]{inputenc}                    %Windows
+%\usepackage[applemac]{inputenc}                  %Mac
+\usepackage{listings}
+\usepackage{multicol}
+\makeatletter
+\newcommand*{\bdiv}{%
+  \nonscript\mskip-\medmuskip\mkern5mu%
+  \mathbin{\operator@font div}\penalty900\mkern5mu%
+  \nonscript\mskip-\medmuskip
+}
+\makeatother
+\lstdefinelanguage{risc}
+{morekeywords={STJ, if, then, goto}
+% sensitive=false,
+% morecomment=[l]{//},
+% morecomment=[s]{/*}{*/},
+% morestring=[b]",
+}
+
+\lstset{language=risc}
+
+%Namen und Matrikelnummern anpassen
+\zweinamen{Aristide Voufouo}{Alexander Schlüter} %2er Gruppen
+% \dreinamen{Tanja Wilke}{Jan Rathner}{Alexander Schlüter} %3er Gruppe
+
+%Briefkastennummer anpassen. z. B. \briefkasten{104}
+% \briefkasten{83}
+
+%Termin der Uebungsgruppe und Raum anpassen z. B. \termin{Mo. 12-14 , SR2}
+\termin{Fr. 10-12, SRZ205}
+
+%Blattnummer anpassen z. B. \blatt{5}
+\blatt{4}
+
+
+\begin{document}
+%Hier kommt der Text des Dokuments......
+\setcounter{excnt}{13}
+\begin{ex}
+  \leavevmode
+  \begin{exlist}
+  \item Im Folgenden seien $s, t$ temporäre Variablen (d.h. sie liegen an
+    Adressen im Speicher, die sich nicht mit den Operanden $a, b,x\dots$ überschneiden).
+  \begin{multicols}{2}
+  \begin{exlist}
+  \item
+    \begin{lstlisting}
+STJ a, a, .+1 
+    \end{lstlisting}
+
+  \item
+    \begin{lstlisting}
+STJ t, t, .+1
+STJ t, 1, .+1
+STJ a, t, .+1
+    \end{lstlisting}
+    
+  \item
+    \begin{lstlisting}
+STJ a, b, .+1
+    \end{lstlisting}
+
+  \item
+    \begin{lstlisting}
+STJ a, a, .+1
+STJ a, b, .+1
+    \end{lstlisting}
+
+  \item
+    \begin{lstlisting}
+STJ t, t, .+1
+STJ t, b, .+1
+STJ a, a, .+1
+STJ a, t, .+1
+    \end{lstlisting}
+    
+  \item
+    \begin{lstlisting}
+STJ t, t, .+1
+STJ t, a, .+1
+STJ s, s, .+1
+STJ s, t, .+1
+STJ a, s, .+1
+    \end{lstlisting}
+    
+  \item
+    \begin{lstlisting}
+STJ t, t, .+1
+STJ t, b, .+1
+STJ a, t, .+1
+    \end{lstlisting}
+    
+  \item
+    \begin{lstlisting}
+STJ 0, 0, x
+    \end{lstlisting}
+    
+  \item
+    \begin{lstlisting}
+STJ a, 0, x
+    \end{lstlisting}
+    
+  \item
+    \begin{lstlisting}
+STJ 0, a, x
+    \end{lstlisting}
+    
+  \item
+    \begin{lstlisting}
+STJ a, 0, .+2
+STJ 0, 0, .+2
+STJ 0, a, x
+    \end{lstlisting}
+    
+  \item
+    \begin{lstlisting}
+STJ b, a, x
+    \end{lstlisting}
+  \end{exlist}
+  \end{multicols}
+
+  \item
+    \begin{multicols}{2}
+    \begin{exlist}
+    \item  
+    \begin{lstlisting}[mathescape=true]
+a $\coloneqq$ 0
+if (b>=0) then goto .+3
+b $\coloneqq$ -b
+c $\coloneqq$ -c
+if (b<=0) then goto .+4
+a $\coloneqq$ a+c
+b $\coloneqq$ b-1
+goto .-3
+    \end{lstlisting}
+    
+  \item
+    \begin{lstlisting}[mathescape=true]
+if (b>=0) then goto .+2
+b $\coloneqq$ -b
+    \end{lstlisting}
+
+  \item \leavevmode
+    \begin{lstlisting}[mathescape=true, numbers=left]
+if (b>=0) then goto 10
+if (c>=0) then goto 13
+b $\coloneqq$ -b
+c $\coloneqq$ -c
+a $\coloneqq$ -1
+a $\coloneqq$ a+1
+b $\coloneqq$ b-c
+if (b>=0) then goto 6
+goto 18
+if (c>=0) goto 6
+b $\coloneqq$ -b
+c $\coloneqq$ -c
+a $\coloneqq$ 0
+a $\coloneqq$ a-1
+b $\coloneqq$ b + c
+if (b>=0) goto 18
+goto 14
+    \end{lstlisting}
+    
+  \item 
+    \begin{lstlisting}[mathescape=true]
+a $\coloneqq$ b
+if (c=0) goto .+4
+a $\coloneqq$ b $\bdiv$ c
+a $\coloneqq$ c * a
+a $\coloneqq$ b - a
+    \end{lstlisting}
+
+  \item 
+    \begin{lstlisting}[mathescape=true]
+a $\coloneqq$ b
+if (c>=b) goto .+2
+a $\coloneqq$ c
+    \end{lstlisting}
+
+  \item 
+    \begin{lstlisting}[mathescape=true]
+if (c=0) goto .+5
+t $\coloneqq$ c
+c $\coloneqq$ b $\bmod$ c
+b $\coloneqq$ t
+goto .-4
+a $\coloneqq$ b
+    \end{lstlisting}
+    \end{exlist}
+    \end{multicols}
+  \end{exlist}
+\end{ex}
+\end{document}

@@ -1,0 +1,97 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             template.tex                                                              %
+%                                                                                       %
+%            Author: Sergej Lewin 10/2008                                               %
+%                                                                                       %    
+% !!!Man braucht noch die Datei Ueb.sty (im gleichen Ordner wie die Hauptdatei)!!!      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper,11pt]{article}             % bestimmt das Aussehen eines Dokuments
+\usepackage{Ueb}                                  % vordefinierte Makros
+
+%!!!!anpassen an das Betriebssystem!!!, um Umlaute zu verwenden
+\usepackage[utf8]{inputenc}                      %Linux
+%\usepackage[latin1]{inputenc}                    %Windows
+%\usepackage[applemac]{inputenc}                  %Mac
+
+
+
+%Namen und Matrikelnummern anpassen
+\zweinamen{Aristide Voufouo}{Alexander Schlüter} %2er Gruppen
+% \dreinamen{Tanja Wilke}{Jan Rathner}{Alexander Schlüter} %3er Gruppe
+
+%Briefkastennummer anpassen. z. B. \briefkasten{104}
+% \briefkasten{83}
+
+%Termin der Uebungsgruppe und Raum anpassen z. B. \termin{Mo. 12-14 , SR2}
+\termin{Fr. 10-12, SRZ205}
+
+%Blattnummer anpassen z. B. \blatt{5}
+\blatt{4}
+
+\newcommand{\mr}[1]{\multirow{2}{*}{$#1$}}
+
+\begin{document}
+%Hier kommt der Text des Dokuments......
+\setcounter{excnt}{13}
+\begin{ex}
+  \leavevmode
+  \begin{exlist}
+  \item \label{ex:14a}  
+   \textbf{Voraussetzung:} Gegeben sei $g:\NN_0\mapsto\RR^+$. Definiere
+     \begin{align*}
+      \mathcal{O}_1(g) &\coloneqq \set{f:\NN_0\mapsto\RR^+ | \exists c\in\RR^+:\forall n\in\NN_0:f(n)\leq c\cdot g(n)} \\
+      \mathcal{O}_2(g) &\coloneqq \set{f:\NN_0\mapsto\RR^+ | \exists c\in\RR^+:\exists n_0\in\NN_0:\forall n\geq n_0:f(n)\leq c\cdot g(n)} \\
+     \end{align*}
+  \textbf{Behauptung:} Es gilt $\mathcal{O}_1(g)=\mathcal{O}_2(g)$. \\
+\textbf{Beweis:}
+Sei $f\in\mathcal{O}_1(g)$. Dann existiert $c\in\RR^+$, sodass für alle
+$n\in\NN_0$ gilt: $f(n)\leq c\cdot g(n)$. Setze $n_0\coloneqq 0$. Dann ist
+offensichtlich die Bedingung für $\mathcal{O}_1(g)$ erfüllt und
+$f\in\mathcal{O}_2(g)$.
+
+Sei nun $f\in\mathcal{O}_2(g)$. Seien $c, n_0$ entsprechend der Bedingung in
+$\mathcal{O}_2(g)$ gegeben. Da $g$ nur positive Werte annimmt können wir definieren
+\begin{equation*}
+ c'\coloneqq \max\left( \Set{c}\cup\Set{\frac{f(n)}{g(n)} | n < n_0}\right)\, .
+\end{equation*}
+Wegen $c'\geq c$ und $g>0$ ist die Bedingung $f(n)\leq c\cdot g(n)\leq c' g(n)$ für alle $n\geq n_0$
+erfüllt. Ist $n < n_0$, so gilt nach Definition von $c'$
+\begin{equation*}
+  \frac{f(n)}{g(n)}\leq c'\implies f(n) \leq c'\cdot g(n)
+\end{equation*}
+und insgesamt folgt $f\in\mathcal{O}_1(g)$.
+\item 
+\textbf{Voraussetzung:} $f,g:\NN_0\mapsto\RR^+$ mit
+\begin{equation*}
+  \lim_{n\to\infty}\frac{f(n)}{g(n)} = 0 
+\end{equation*}
+\textbf{Behauptung:} $f\in\ON{g}$ \\
+\textbf{Beweis:} Nach Definition des Limes existiert für $\epsilon =1$ ein
+$n_0\in\NN_0$, sodass für alle $n\geq n_0$ gilt:
+\begin{equation*}
+ \abs*{\frac{f(n)}{g(n)}} <\epsilon = 1\quad \text{d.h.}\quad f(n) < g(n) 
+\end{equation*}
+Also ist die Bedingung der zweiten Definition aus \ref{ex:14a} erfüllt und
+$f\in\ON{g}$. 
+\item\leavevmode 
+  % \begin{center}
+\begin{tabular}{*{9}{c|}c}
+\hline
+\mr{\left(\sfrac{1}{3}\right)^n} & \mr{6} & $\log_2 n$ & \mr{\log^2 n} & \mr{n^{1/3}+\log_2 n} & \mr{\sqrt{n}} & \mr{n / \log_2 n} & \mr{n} & \mr{n\log_2 n} & $n^2$ \\
+& & $\ln n$ &  & & & & & & $n^2+\log_2 n$ \\
+  % \hhline{*{4}{=:}=:t:t:t:}
+  \hline
+\end{tabular}
+\newline
+\vspace{5mm}
+\newline
+\begin{tabular}{*{4}{c|}c}
+\hline
+  $n^3$ & $n - n^3 + 7n^5$ & $\left(\sfrac{3}{2}\right)^n$ & $2^n$ & $n!$ \\
+  \hline
+\end{tabular}
+
+% \end{center}
+  \end{exlist}
+\end{ex}
+\end{document}
